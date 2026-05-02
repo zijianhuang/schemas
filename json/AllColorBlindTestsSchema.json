@@ -31,10 +31,6 @@
       "type": "object",
       "description": "Represents a color blindness test consisting of a title and a collection of test plates.",
       "additionalProperties": false,
-      "required": [
-        "RandomizePlates",
-        "MaxPlates"
-      ],
       "properties": {
         "Title": {
           "type": "string"

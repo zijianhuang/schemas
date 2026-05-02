@@ -12,6 +12,14 @@
       "items": {
         "$ref": "#/definitions/Plate"
       }
+    },
+    "RandomizePlates": {
+      "type": "boolean"
+    },
+    "MaxPlates": {
+      "type": "integer",
+      "description": "Equal or less than the number of plates in the test. If set, the app will only present the first MaxPlates plates to the user, and ignore the rest. This is useful for quick screening tests. When set nonn zero, the plates will be randomized, and only the first MaxPlates plates will be used for the test. When set to zero, all plates will be used for the test.",
+      "format": "int32"
     }
   },
   "definitions": {
