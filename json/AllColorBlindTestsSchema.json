@@ -6,18 +6,35 @@
     "Title": {
       "type": "string"
     },
-    "Tests": {
+    "TestContents": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/ColorBlindTest"
+        "$ref": "#/definitions/TestContent"
       }
     }
   },
   "definitions": {
+    "TestContent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "BaseUrl": {
+          "type": "string",
+          "description": "Relative path to the folder containing all the plates for the test. This is used to construct the full path to each plate by combining BaseUrl and PlatePath. For example, if BaseUrl is \"Letter_Single\", and PlatePath is \"ishihara_A.svg\", the full path to the plate will be \"Letter_Single/ishihara_A.svg\". This allows for better organization of plate files and easier management of file paths. For example, \"General1/Letter\", or \"c:/Data/\", or \"https://example.com/plates/Test1\". "
+        },
+        "Test": {
+          "$ref": "#/definitions/ColorBlindTest"
+        }
+      }
+    },
     "ColorBlindTest": {
       "type": "object",
       "description": "Represents a color blindness test consisting of a title and a collection of test plates.",
       "additionalProperties": false,
+      "required": [
+        "RandomizePlates",
+        "MaxPlates"
+      ],
       "properties": {
         "Title": {
           "type": "string"
@@ -28,6 +45,14 @@
           "items": {
             "$ref": "#/definitions/Plate"
           }
+        },
+        "RandomizePlates": {
+          "type": "boolean"
+        },
+        "MaxPlates": {
+          "type": "integer",
+          "description": "Equal or less than the number of plates in the test. If set, the app will only present the first MaxPlates plates to the user, and ignore the rest. This is useful for quick screening tests. When set nonn zero, the plates will be randomized, and only the first MaxPlates plates will be used for the test. When set to zero, all plates will be used for the test.",
+          "format": "int32"
         }
       }
     },
