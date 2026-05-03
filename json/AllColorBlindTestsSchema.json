@@ -3,11 +3,13 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "Title": {
-      "type": "string"
+    "title": {
+      "type": "string",
+      "x-nullable": true
     },
-    "TestContents": {
+    "testContents": {
       "type": "array",
+      "x-nullable": true,
       "items": {
         "$ref": "#/definitions/TestContent"
       }
@@ -18,12 +20,18 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "BaseUrl": {
+        "baseUrl": {
           "type": "string",
-          "description": "Relative path to the folder containing all the plates for the test. This is used to construct the full path to each plate by combining BaseUrl and PlatePath. For example, if BaseUrl is \"Letter_Single\", and PlatePath is \"ishihara_A.svg\", the full path to the plate will be \"Letter_Single/ishihara_A.svg\". This allows for better organization of plate files and easier management of file paths. For example, \"General1/Letter\", or \"c:/Data/\", or \"https://example.com/plates/Test1\". "
+          "description": "Relative path to the folder containing all the plates for the test. This is used to construct the full path to each plate by combining BaseUrl and PlatePath. For example, if BaseUrl is \"Letter_Single\", and PlatePath is \"ishihara_A.svg\", the full path to the plate will be \"Letter_Single/ishihara_A.svg\". This allows for better organization of plate files and easier management of file paths. For example, \"General1/Letter\", or \"c:/Data/\", or \"https://example.com/plates/Test1\". ",
+          "x-nullable": true
         },
-        "Test": {
-          "$ref": "#/definitions/ColorBlindTest"
+        "test": {
+          "x-nullable": true,
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ColorBlindTest"
+            }
+          ]
         }
       }
     },
@@ -32,23 +40,27 @@
       "description": "Represents a color blindness test consisting of a title and a collection of test plates.",
       "additionalProperties": false,
       "properties": {
-        "Title": {
-          "type": "string"
+        "title": {
+          "type": "string",
+          "x-nullable": true
         },
-        "Plates": {
+        "plates": {
           "type": "array",
           "description": "all plates in the test. The order of plates is important, as it will be used to determine the sequence of presentation to the user.",
+          "x-nullable": true,
           "items": {
             "$ref": "#/definitions/Plate"
           }
         },
-        "RandomizePlates": {
-          "type": "boolean"
+        "randomizePlates": {
+          "type": "boolean",
+          "x-nullable": true
         },
-        "MaxPlates": {
+        "maxPlates": {
           "type": "integer",
           "description": "Equal or less than the number of plates in the test. If set, the app will only present the first MaxPlates plates to the user, and ignore the rest. This is useful for quick screening tests. When set nonn zero, the plates will be randomized, and only the first MaxPlates plates will be used for the test. When set to zero, all plates will be used for the test.",
-          "format": "int32"
+          "format": "int32",
+          "x-nullable": true
         }
       }
     },
@@ -56,34 +68,32 @@
       "type": "object",
       "description": "Describe how to present a plate to the user, and how the user can answer. The answer can be through clicking buttons, or key-in answer through virtual keyboard, or voice input, or drawing on the screen.",
       "additionalProperties": false,
-      "required": [
-        "Nature",
-        "Input",
-        "Order"
-      ],
       "properties": {
-        "PlatePath": {
+        "platePath": {
           "type": "string",
-          "description": "Relative file path to the plate. e.g. Letter_Single/ishihara_A.svg"
+          "description": "Relative file path to the plate. e.g. Letter_Single/ishihara_A.svg",
+          "x-nullable": true
         },
-        "Answer": {
+        "answer": {
           "type": "string",
-          "description": "User input answer through selecting a button on the screen, or key-in the answer through a virtual keyboard. e.g. A, LTE\nIf InputMethod is ImageButtons, the answer could be General1/Letters/A.svg"
+          "description": "User input answer through selecting a button on the screen, or key-in the answer through a virtual keyboard. e.g. A, LTE\nIf InputMethod is ImageButtons, the answer could be General1/Letters/A.svg",
+          "x-nullable": true
         },
-        "Nature": {
+        "nature": {
           "$ref": "#/definitions/PlateNature"
         },
-        "Input": {
+        "input": {
           "$ref": "#/definitions/InputMethod"
         },
-        "ButtonTexts": {
+        "buttonTexts": {
           "type": "array",
           "description": "If InputMethod is ImageButtons, each button text is a (relative) file path to the source image.",
+          "x-nullable": true,
           "items": {
             "type": "string"
           }
         },
-        "Order": {
+        "order": {
           "type": "integer",
           "description": "Optional. The the app may randomize the order of plates.",
           "format": "int32"
