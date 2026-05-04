@@ -13,6 +13,10 @@
       "items": {
         "$ref": "#/definitions/TestContent"
       }
+    },
+    "description": {
+      "type": "string",
+      "x-nullable": true
     }
   },
   "definitions": {
@@ -61,6 +65,11 @@
           "description": "Equal or less than the number of plates in the test. If set, the app will only present the first MaxPlates plates to the user, and ignore the rest. This is useful for quick screening tests. When set nonn zero, the plates will be randomized, and only the first MaxPlates plates will be used for the test. When set to zero, all plates will be used for the test.",
           "format": "int32",
           "x-nullable": true
+        },
+        "description": {
+          "type": "string",
+          "description": "Description and instruction.",
+          "x-nullable": true
         }
       }
     },
@@ -97,6 +106,11 @@
           "type": "integer",
           "description": "Optional. The the app may randomize the order of plates.",
           "format": "int32"
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional description and instruction for the plate. This can be used to provide additional information to the user about how to answer the plate, or any other relevant information. For example, \"Please select the letter you see in the image\", or \"Please enter the number you see in the image\". This can help improve the user experience and ensure that users understand how to interact with the plate correctly. If not defined, the description of the container TestContent will be used. If that is also not defined, the app can use a default description based on the PlateNature and InputMethod. For example, for a plate with PlateNature of Letter and InputMethod of Buttons, the default description could be \"Please select the letter you see in the image\". For a plate with PlateNature of Digit_2 and InputMethod of NumPad, the default description could be \"Please enter the two-digit number you see in the image\". The app can have a set of predefined descriptions for different combinations of PlateNature and InputMethod to ensure that users receive clear instructions on how to answer each plate.",
+          "x-nullable": true
         }
       }
     },
@@ -126,20 +140,24 @@
     },
     "InputMethod": {
       "type": "string",
-      "description": "",
+      "description": "Specifies the available input methods for user interaction within the application.",
       "x-enumNames": [
         "ImageButtons",
         "Buttons",
         "NumPad",
+        "LetterPad",
         "Voice",
-        "Drawing"
+        "Drawing",
+        "Keyboarding"
       ],
       "enum": [
         "ImageButtons",
         "Buttons",
         "NumPad",
+        "LetterPad",
         "Voice",
-        "Drawing"
+        "Drawing",
+        "Keyboarding"
       ]
     }
   }
