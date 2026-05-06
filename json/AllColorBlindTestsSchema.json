@@ -102,11 +102,6 @@
             "type": "string"
           }
         },
-        "order": {
-          "type": "integer",
-          "description": "Optional. The the app may randomize the order of plates.",
-          "format": "int32"
-        },
         "description": {
           "type": "string",
           "description": "Optional description and instruction for the plate. This can be used to provide additional information to the user about how to answer the plate, or any other relevant information. For example, \"Please select the letter you see in the image\", or \"Please enter the number you see in the image\". This can help improve the user experience and ensure that users understand how to interact with the plate correctly. If not defined, the description of the container TestContent will be used. If that is also not defined, the app can use a default description based on the PlateNature and InputMethod. For example, for a plate with PlateNature of Letter and InputMethod of Buttons, the default description could be \"Please select the letter you see in the image\". For a plate with PlateNature of Digit_2 and InputMethod of NumPad, the default description could be \"Please enter the two-digit number you see in the image\". The app can have a set of predefined descriptions for different combinations of PlateNature and InputMethod to ensure that users receive clear instructions on how to answer each plate.",
