@@ -15,13 +15,9 @@
         "$ref": "#/definitions/Plate"
       }
     },
-    "randomizePlates": {
-      "type": "boolean",
-      "x-nullable": true
-    },
     "maxPlates": {
       "type": "integer",
-      "description": "Equal or less than the number of plates in the test. If set, the app will only present the first MaxPlates plates to the user, and ignore the rest. This is useful for quick screening tests. When set nonn zero, the plates will be randomized, and only the first MaxPlates plates will be used for the test. When set to zero, all plates will be used for the test.",
+      "description": "Equal or less than the number of plates in the test. If set, the app will only present the first MaxPlates plates to the user, and ignore the rest. This is useful for quick screening tests. When set nonn zero, the plates will be randomized, and only the first MaxPlates plates will be used for the test. When set to zero, all plates will be used for the test in order, unless RandomizePlates is true.",
       "format": "int32",
       "x-nullable": true
     },
@@ -36,16 +32,20 @@
       "type": "object",
       "description": "Describe how to present a plate to the user, and how the user can answer. The answer can be through clicking buttons, or key-in answer through virtual keyboard, or voice input, or drawing on the screen.",
       "additionalProperties": false,
+      "required": [
+        "platePath",
+        "answer"
+      ],
       "properties": {
         "platePath": {
           "type": "string",
           "description": "Relative file path to the plate. e.g. Letter_Single/ishihara_A.svg",
-          "x-nullable": true
+          "minLength": 1
         },
         "answer": {
           "type": "string",
           "description": "User input answer through selecting a button on the screen, or key-in the answer through a virtual keyboard. e.g. A, LTE\nIf InputMethod is ImageButtons, the answer could be General1/Letters/A.svg",
-          "x-nullable": true
+          "minLength": 1
         },
         "nature": {
           "$ref": "#/definitions/PlateNature"
