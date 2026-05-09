@@ -2,10 +2,13 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "additionalProperties": false,
+  "required": [
+    "title"
+  ],
   "properties": {
     "title": {
       "type": "string",
-      "x-nullable": true
+      "minLength": 1
     },
     "plates": {
       "type": "array",

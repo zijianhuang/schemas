@@ -23,19 +23,18 @@
     "TestContent": {
       "type": "object",
       "additionalProperties": false,
+      "required": [
+        "baseUrl",
+        "test"
+      ],
       "properties": {
         "baseUrl": {
           "type": "string",
           "description": "Relative path to the folder containing all the plates for the test. This is used to construct the full path to each plate by combining BaseUrl and PlatePath. For example, if BaseUrl is \"Letter_Single\", and PlatePath is \"ishihara_A.svg\", the full path to the plate will be \"Letter_Single/ishihara_A.svg\". This allows for better organization of plate files and easier management of file paths. For example, \"General1/Letter\", or \"c:/Data/\", or \"https://example.com/plates/Test1\". ",
-          "x-nullable": true
+          "minLength": 1
         },
         "test": {
-          "x-nullable": true,
-          "oneOf": [
-            {
-              "$ref": "#/definitions/ColorBlindTest"
-            }
-          ]
+          "$ref": "#/definitions/ColorBlindTest"
         }
       }
     },
@@ -43,10 +42,13 @@
       "type": "object",
       "description": "Represents a color blindness test consisting of a title and a collection of test plates.",
       "additionalProperties": false,
+      "required": [
+        "title"
+      ],
       "properties": {
         "title": {
           "type": "string",
-          "x-nullable": true
+          "minLength": 1
         },
         "plates": {
           "type": "array",
