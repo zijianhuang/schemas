@@ -10,6 +10,11 @@
       "type": "string",
       "minLength": 1
     },
+    "dir": {
+      "type": "string",
+      "description": "Generally empty, however, it could be relative path to the folder containing all the plates for the test. For example, \"../../somewhere\".",
+      "x-nullable": true
+    },
     "plates": {
       "type": "array",
       "description": "all plates in the test. The order of plates is important, as it will be used to determine the sequence of presentation to the user.",

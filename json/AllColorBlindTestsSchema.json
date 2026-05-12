@@ -24,11 +24,11 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "baseUrl",
+        "dir",
         "test"
       ],
       "properties": {
-        "baseUrl": {
+        "dir": {
           "type": "string",
           "description": "Relative path to the folder containing all the plates for the test. This is used to construct the full path to each plate by combining BaseUrl and PlatePath. For example, if BaseUrl is \"Letter_Single\", and PlatePath is \"ishihara_A.svg\", the full path to the plate will be \"Letter_Single/ishihara_A.svg\". This allows for better organization of plate files and easier management of file paths. For example, \"General1/Letter\", or \"c:/Data/\", or \"https://example.com/plates/Test1\". ",
           "minLength": 1
@@ -49,6 +49,11 @@
         "title": {
           "type": "string",
           "minLength": 1
+        },
+        "dir": {
+          "type": "string",
+          "description": "Generally empty, however, it could be relative path to the folder containing all the plates for the test. For example, \"../../somewhere\".",
+          "x-nullable": true
         },
         "plates": {
           "type": "array",
